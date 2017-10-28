@@ -1,22 +1,37 @@
 import java.lang.String._;
 //import scala.collection.mutable.ListBuffer;
 import String_Routine._;
+import scala.util.control.Breaks._;
 
 object String_Functions {
 	def main(args: Array[String]){
 
-	  
+
 		println("Enter The String");
-		var str:String = scala.io.StdIn.readLine();
-		
-		var str_obj = new STR(str);
+		var userInput:String = scala.io.StdIn.readLine();
+		var obj = new StringFunctions(userInput);        //Instantiate the class
 
-		println("Lowercase: " +str_obj.LowerCase(str));
-		println("Uppercase: " +str_obj.UpperCase(str));
-		println("Reverse String: " +str_obj.ReverseString(str));
-    println("Is Palindrome: " +str_obj.PalindromeCheck(str));
-		println("Original String: " +str_obj);
+		println("Functions available:- lower,upper,reverse,pallindrome");
+
+		breakable {
+			while(true){
+				println("Enter you choice");
+				var userChoice:String = scala.io.StdIn.readLine();
+				if(userChoice.equalsIgnoreCase("lower") || userChoice.equalsIgnoreCase("upper") || userChoice.equalsIgnoreCase("reverse") || userChoice.equalsIgnoreCase("pallindrome")){
+					val call = userChoice match{
+					case "lower" => println("Lowercase: " +obj.LowerCase());
+					case "upper" => println("Uppercase: " +obj.UpperCase());
+					case "reverse" => println("Reverse String: " +obj.ReverseString());
+					case "pallindrome" => println("Is Palindrome: " +obj.PalindromeCheck());
+
+
+					}
+					break;
+				}
+				else{
+					println("Invalid Input,Enter a valid option")
+				}
+			}
+		}
 	}
-
-	
 }
