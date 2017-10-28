@@ -11,27 +11,29 @@ object String_Functions {
 		var userInput:String = scala.io.StdIn.readLine();
 		var obj = new StringFunctions(userInput);        //Instantiate the class
 
-		println("Functions available:- lower,upper,reverse,pallindrome");
+		println("""String functions available:-
+				1. Convert to lower case
+				2. Convert to upper case
+				3. Reverse the string
+				4. Check whether the string is a Palindrome or not
+				5. Exit""");
 
-		breakable {
-			while(true){
-				println("Enter you choice");
-				var userChoice:String = scala.io.StdIn.readLine();
-				if(userChoice.equalsIgnoreCase("lower") || userChoice.equalsIgnoreCase("upper") || userChoice.equalsIgnoreCase("reverse") || userChoice.equalsIgnoreCase("pallindrome")){
-					val call = userChoice match{
-					case "lower" => println("Lowercase: " +obj.LowerCase());
-					case "upper" => println("Uppercase: " +obj.UpperCase());
-					case "reverse" => println("Reverse String: " +obj.ReverseString());
-					case "pallindrome" => println("Is Palindrome: " +obj.PalindromeCheck());
+		println("Enter your choice");
+		var userChoice:Int = scala.io.StdIn.readInt();
 
-
-					}
-					break;
-				}
-				else{
-					println("Invalid Input,Enter a valid option")
-				}
+		val call = userChoice match{
+		case 1 => println("Lowercase: " +obj.LowerCase());
+		case 2 => println("Uppercase: " +obj.UpperCase());
+		case 3 => println("Reverse String: " +obj.ReverseString());
+		case 4 => println("Is Palindrome: " +obj.PalindromeCheck());
+		case 5 => println("Good Choice, Bye"); sys.exit();
+		case _ => {
+			println("Not a valid choice!");
+			while(userChoice<1 || userChoice>5){
+				println("Enter your choice");
+				var userChoice:Int = scala.io.StdIn.readInt();
 			}
+		}
 		}
 	}
 }
